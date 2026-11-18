@@ -1,0 +1,97 @@
+/*
+ * THE single token file. Every colour, space, radius, shadow, blur and type
+ * value lives here. Components use Tailwind utilities that read these vars;
+ * no raw hex anywhere else. Contrast is verified by `npm run contrast`.
+ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --c-bg: #07090d;
+  --c-surface: #0f131a;
+  --c-surface-2: #171c26;
+  --c-border: #232a36;
+  --c-text: #f2f4f7;
+  --c-muted: #98a2b3;
+  --c-signal: #d4ff3a;
+  --c-signal-ink: #0b0d12;
+  --c-ice: #7cd4ff;
+  --c-ember: #ff8a5b;
+  --c-ok: #4ade9a;
+  --c-focus: var(--c-ice);
+  --aurora-a: 124 212 255;
+  --aurora-b: 212 255 58;
+  --aurora-alpha: 0.1;
+  --grain-opacity: 0.06;
+  --glass: 15 19 26 / 0.62;
+  --inner-highlight: rgb(255 255 255 / 0.05);
+  --shadow-card: 0 1px 0 0 var(--inner-highlight) inset, 0 8px 32px -12px rgb(0 0 0 / 0.6);
+  --shadow-float: 0 12px 40px -8px rgb(0 0 0 / 0.7);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --c-bg: #f6f5f1;
+  --c-surface: #ffffff;
+  --c-surface-2: #edebe5;
+  --c-border: #ddd9d0;
+  --c-text: #0b0d12;
+  --c-muted: #586172;
+  --c-signal: #d4ff3a; /* fills and thin underlines only, never text */
+  --c-signal-ink: #0b0d12;
+  --c-ice: #0b6fa8;
+  --c-ember: #c2491d;
+  --c-ok: #157f4f;
+  --aurora-a: 11 111 168;
+  --aurora-b: 212 255 58;
+  --aurora-alpha: 0.12;
+  --grain-opacity: 0.05;
+  --glass: 255 255 255 / 0.7;
+  --inner-highlight: rgb(255 255 255 / 0.8);
+  --shadow-card: 0 1px 0 0 var(--inner-highlight) inset, 0 8px 28px -14px rgb(11 13 18 / 0.18);
+  --shadow-float: 0 12px 36px -10px rgb(11 13 18 / 0.25);
+}
+
+:root {
+  /* Spacing: 8px scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+  --gutter: 1rem;
+  --max-w: 1240px;
+
+  /* Radius */
+  --radius-sm: 0.75rem;
+  --radius-card: 1.5rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+
+  /* Blur */
+  --blur-glass: 16px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 300ms;
+
+  /* Fluid type */
+  --fs-hero: clamp(2.75rem, 1.2rem + 7vw, 6.5rem);
+  --fs-h1: clamp(2.25rem, 1.2rem + 4.5vw, 4.5rem);
+  --fs-h2: clamp(1.75rem, 1.1rem + 2.8vw, 3rem);
+  --fs-h3: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-mono: 0.8125rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+  }
+}

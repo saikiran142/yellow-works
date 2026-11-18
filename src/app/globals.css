@@ -1,0 +1,370 @@
+@import "tailwindcss";
+@import "../design/tokens.css";
+
+/* Self-hosted Indic fonts. unicode-range keeps them off the wire unless the script is on the page. */
+@font-face {
+  font-family: "Noto Sans Telugu";
+  src: url("../fonts/NotoSansTelugu.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0C00-0C7F, U+200C-200D, U+25CC;
+}
+@font-face {
+  font-family: "Noto Sans Devanagari";
+  src: url("../fonts/NotoSansDevanagari.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-border: var(--c-border);
+  --color-text: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-signal: var(--c-signal);
+  --color-signal-ink: var(--c-signal-ink);
+  --color-ice: var(--c-ice);
+  --color-ember: var(--c-ember);
+  --color-ok: var(--c-ok);
+
+  --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), "Noto Sans Telugu", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-card: var(--radius-card);
+  --radius-lg: var(--radius-lg);
+  --radius-sm: var(--radius-sm);
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+  --ease-out: var(--ease-out);
+  --max-width-site: var(--max-w);
+}
+
+html {
+  background: var(--c-bg);
+}
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-weight: 600;
+}
+:lang(te) {
+  font-family: "Noto Sans Telugu", var(--font-sans);
+}
+:lang(hi) {
+  font-family: "Noto Sans Devanagari", var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+::selection {
+  background: var(--c-signal);
+  color: var(--c-signal-ink);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+.logo-l {
+  display: none;
+}
+[data-theme="light"] .logo-l {
+  display: block;
+}
+[data-theme="light"] .logo-d {
+  display: none;
+}
+/* Responsive mode: mark on small phones, full logo from 400px. Other modes always show their part. */
+.logo-responsive .logo-wide {
+  display: none;
+}
+@media (min-width: 400px) {
+  .logo-responsive .logo-wide {
+    display: block;
+  }
+  .logo-responsive .logo-mark {
+    display: none;
+  }
+}
+
+.em-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ambient layers: aurora mesh + film grain (decorative, fixed, pointer-events none) */
+.aurora {
+  position: fixed;
+  inset: -20vmax;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(40vmax 30vmax at 20% 15%, rgb(var(--aurora-a) / var(--aurora-alpha)), transparent 70%),
+    radial-gradient(35vmax 28vmax at 80% 25%, rgb(var(--aurora-b) / calc(var(--aurora-alpha) * 0.7)), transparent 70%),
+    radial-gradient(45vmax 30vmax at 50% 90%, rgb(var(--aurora-a) / calc(var(--aurora-alpha) * 0.6)), transparent 70%);
+  animation: aurora-drift 40s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("/brand/grain.svg");
+}
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) rotate(6deg);
+  }
+}
+
+/* Card: spotlight follows --mx/--my set by JS; gradient border on hover */
+.card {
+  position: relative;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+  isolation: isolate;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--aurora-b) / 0.1), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.card:hover::before,
+.card:focus-within::before {
+  opacity: 1;
+}
+.card[data-glow]:hover {
+  border-color: color-mix(in srgb, var(--c-signal) 45%, var(--c-border));
+}
+.glass {
+  background: rgb(var(--glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(1.4);
+  border: 1px solid var(--c-border);
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.skeleton {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--c-surface-2) 25%, var(--c-border) 50%, var(--c-surface-2) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.6s linear infinite;
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(var(--aurora-b) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgb(var(--aurora-b) / 0);
+  }
+}
+.live-dot {
+  animation: pulse-dot 2s ease-out infinite;
+}
+
+/* Kinetic headline: each word rises once. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  animation: rise 420ms var(--ease-out) forwards;
+}
+.step-in {
+  opacity: 0;
+  animation: rise 500ms var(--ease-out) forwards;
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Scroll story ---------------------------------------------------------------
+   Default: a plain list (no support, or reduced motion). Enhanced: a pinned stage whose
+   panels follow the scroll via CSS scroll-driven animations. The track is 400vh tall and the
+   stage is pinned for ~20%..80% of the track's "cover" range; each of the 5 steps owns 12%. */
+.story-grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 1024px) {
+  .story-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+.story-steps {
+  display: grid;
+  gap: 1.5rem;
+}
+.story-panel {
+  padding: 1rem 0;
+}
+.story-device {
+  padding: 1.5rem;
+}
+.story-panel + .story-panel {
+  border-top: 1px solid var(--c-border);
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .story-track {
+      height: 400vh;
+      view-timeline: --story block;
+    }
+    .story-stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+    }
+    .story-stage > .story-grid {
+      width: 100%;
+    }
+    .story-device {
+      position: relative;
+      min-height: 22rem;
+    }
+    .story-panel {
+      position: absolute;
+      inset: 1.5rem;
+      opacity: 0;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      animation: story-panel linear both;
+      animation-timeline: --story;
+    }
+    .story-step {
+      border-left: 2px solid var(--c-border);
+      padding-left: 1rem;
+      animation: story-step linear both;
+      animation-timeline: --story;
+    }
+    .story-panel:nth-child(1),
+    .story-step:nth-child(1) { animation-range: cover 18% cover 32%; }
+    .story-panel:nth-child(2),
+    .story-step:nth-child(2) { animation-range: cover 30% cover 44%; }
+    .story-panel:nth-child(3),
+    .story-step:nth-child(3) { animation-range: cover 42% cover 56%; }
+    .story-panel:nth-child(4),
+    .story-step:nth-child(4) { animation-range: cover 54% cover 68%; }
+    .story-panel:nth-child(5),
+    .story-step:nth-child(5) { animation-range: cover 66% cover 82%; }
+    .story-panel:nth-child(1) { animation-name: story-panel-first; }
+    .story-panel:nth-child(5) { animation-name: story-panel-last; }
+  }
+}
+@keyframes story-panel {
+  0% { opacity: 0; transform: translateY(12px); }
+  20%, 80% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes story-panel-first {
+  0% { opacity: 0; transform: translateY(12px); }
+  20%, 80% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes story-panel-last {
+  0% { opacity: 0; transform: translateY(12px); }
+  20%, 100% { opacity: 1; transform: none; }
+}
+@keyframes story-step {
+  0%, 100% { border-left-color: var(--c-border); }
+  20%, 80% { border-left-color: var(--c-signal); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word,
+  .step-in {
+    opacity: 1;
+    animation: none;
+  }
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .aurora {
+    animation: none;
+  }
+}

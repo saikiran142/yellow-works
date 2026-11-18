@@ -1,0 +1,17 @@
+node_modules
+.next
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+
+/data
+
+/test-results
+/playwright-report
+
+
+# local artifacts
+/.next.zip
+*.zip
+/e2e
