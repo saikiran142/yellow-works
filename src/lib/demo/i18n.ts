@@ -46,6 +46,8 @@ export interface Strings {
   unsure: string;
   ui: {
     placeholder: string;
+    /** Short prompt shown above the suggested questions. */
+    hint: string;
     send: string;
     chips: { price: string; hours: string; book: string; location: string };
     typing: string;
@@ -67,7 +69,7 @@ export const STRINGS: Record<Lang, Strings> = {
     advice: "I cannot give medical, legal or financial advice. Our team can speak with you. Shall I book a slot?",
     offtopic: (n) => `I can only help with questions about ${n}, like prices, timings and bookings.`,
     unsure: "I am not sure about that, so I have asked our team to confirm. They will reply here.",
-    ui: { placeholder: "Type a message", send: "Send", chips: { price: "What are your prices?", hours: "What are your timings?", book: "I want to book a slot", location: "Where are you?" }, typing: "typing" },
+    ui: { placeholder: "Type your question here…", hint: "Tap a question, or type your own", send: "Send", chips: { price: "What are your prices?", hours: "What are your timings?", book: "I want to book a slot", location: "Where are you?" }, typing: "typing" },
   },
   te: {
     greet: (n) => `నమస్కారం, నేను ${n} యొక్క ఆటోమేటెడ్ అసిస్టెంట్‌ని. మీకు ఎలా సహాయం చేయగలను?`,
@@ -83,7 +85,7 @@ export const STRINGS: Record<Lang, Strings> = {
     advice: "నేను వైద్య, న్యాయ లేదా ఆర్థిక సలహా ఇవ్వలేను. మా బృందం మీతో మాట్లాడగలదు. స్లాట్ బుక్ చేయమంటారా?",
     offtopic: (n) => `${n} గురించిన ప్రశ్నలకు మాత్రమే నేను సహాయం చేయగలను, ఉదా. ధరలు, సమయాలు, బుకింగ్.`,
     unsure: "దీని గురించి నాకు ఖచ్చితంగా తెలియదు, అందుకే మా బృందాన్ని నిర్ధారించమని అడిగాను. వారు ఇక్కడే సమాధానం ఇస్తారు.",
-    ui: { placeholder: "సందేశం టైప్ చేయండి", send: "పంపండి", chips: { price: "ధరలు ఎంత?", hours: "సమయాలు ఏమిటి?", book: "స్లాట్ బుక్ చేయాలి", location: "మీరు ఎక్కడ ఉన్నారు?" }, typing: "టైప్ చేస్తోంది" },
+    ui: { placeholder: "మీ ప్రశ్నను ఇక్కడ టైప్ చేయండి…", hint: "ఒక ప్రశ్నను ట్యాప్ చేయండి, లేదా మీ ప్రశ్న టైప్ చేయండి", send: "పంపండి", chips: { price: "ధరలు ఎంత?", hours: "సమయాలు ఏమిటి?", book: "స్లాట్ బుక్ చేయాలి", location: "మీరు ఎక్కడ ఉన్నారు?" }, typing: "టైప్ చేస్తోంది" },
   },
   hi: {
     greet: (n) => `नमस्ते, मैं ${n} का ऑटोमैटेड असिस्टेंट हूँ। मैं आपकी कैसे मदद कर सकता हूँ?`,
@@ -99,6 +101,6 @@ export const STRINGS: Record<Lang, Strings> = {
     advice: "मैं चिकित्सा, कानूनी या वित्तीय सलाह नहीं दे सकता। हमारी टीम आपसे बात कर सकती है। क्या स्लॉट बुक कर दूँ?",
     offtopic: (n) => `मैं सिर्फ़ ${n} से जुड़े सवालों में मदद कर सकता हूँ, जैसे कीमत, समय और बुकिंग।`,
     unsure: "इस बारे में मुझे पक्का पता नहीं है, इसलिए मैंने हमारी टीम से पुष्टि करने को कहा है। वे यहीं जवाब देंगे।",
-    ui: { placeholder: "संदेश लिखें", send: "भेजें", chips: { price: "कीमत क्या है?", hours: "समय क्या है?", book: "स्लॉट बुक करना है", location: "आप कहाँ हैं?" }, typing: "लिख रहा है" },
+    ui: { placeholder: "अपना सवाल यहाँ लिखें…", hint: "कोई सवाल चुनें, या अपना सवाल लिखें", send: "भेजें", chips: { price: "कीमत क्या है?", hours: "समय क्या है?", book: "स्लॉट बुक करना है", location: "आप कहाँ हैं?" }, typing: "लिख रहा है" },
   },
 };

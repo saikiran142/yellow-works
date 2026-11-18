@@ -95,12 +95,26 @@ export function CustomerPane({ fd, extraQuestions }: { fd: FD; extraQuestions: s
         {fd.notice && <p className="border-t border-border bg-surface px-4 py-2 text-xs text-muted">{fd.notice}</p>}
 
         {!fd.capped && (
-          <div className="flex flex-wrap gap-2 border-t border-border bg-surface px-3 py-2">
-            {chips.slice(0, 4).map((c) => (
-              <Chip key={c} disabled={fd.pending} onClick={() => void fd.send(c)} className="min-h-9 text-xs" lang={LANG_CODE[fd.lang]}>
-                {c}
-              </Chip>
-            ))}
+          <div className="border-t border-border bg-surface px-3 pb-2 pt-2.5">
+            <p className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted" lang={LANG_CODE[fd.lang]}>
+              <span aria-hidden="true" className={clsx(fd.userCount === 0 && "hint-pointer")}>
+                👇
+              </span>
+              <span className={clsx(fd.userCount === 0 && "text-text")}>{ui.hint}</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {chips.slice(0, 4).map((c) => (
+                <Chip
+                  key={c}
+                  disabled={fd.pending}
+                  onClick={() => void fd.send(c)}
+                  className={clsx("min-h-9 text-xs", fd.userCount === 0 && "chip-attention border-signal")}
+                  lang={LANG_CODE[fd.lang]}
+                >
+                  {c}
+                </Chip>
+              ))}
+            </div>
           </div>
         )}
 
@@ -117,7 +131,7 @@ export function CustomerPane({ fd, extraQuestions }: { fd: FD; extraQuestions: s
             autoComplete="off"
             placeholder={fd.capped ? "Demo limit reached" : ui.placeholder}
             lang={LANG_CODE[fd.lang]}
-            className="min-h-11 min-w-0 flex-1 rounded-full border border-border bg-bg px-4 text-sm text-text placeholder:text-muted disabled:opacity-50"
+            className="min-h-11 min-w-0 flex-1 rounded-full border border-border bg-bg px-4 text-sm text-text placeholder:text-muted focus:border-signal disabled:opacity-50"
           />
           <button
             type="submit"

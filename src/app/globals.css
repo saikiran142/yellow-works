@@ -214,6 +214,33 @@ body {
   animation: pulse-dot 2s ease-out infinite;
 }
 
+/* Chat hint: bouncing pointer + glowing chips until the first message. */
+@keyframes nudge-down {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@keyframes chip-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-signal) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-signal) 0%, transparent);
+  }
+}
+.hint-pointer {
+  display: inline-block;
+  animation: nudge-down 1s ease-in-out infinite;
+}
+.chip-attention {
+  animation: chip-glow 1.8s ease-out infinite;
+}
+
 /* Kinetic headline: each word rises once. */
 @keyframes rise {
   from {
