@@ -11,7 +11,7 @@ const groups: { id: ServiceGroup; n: string }[] = [
 /** Three outcomes as large interactive cards. Bullets are read from the services content. */
 export function Outcomes(): React.JSX.Element {
   return (
-    <section aria-labelledby="outcomes-title" className="py-24">
+    <section aria-labelledby="outcomes-title" className="py-14 md:py-20">
       <Container>
         <SectionHead id="outcomes-title" eyebrow="What you get" title="Three outcomes." em="One system." lead="Pick the one you need most. They work best together." />
         <ul className="grid gap-4 lg:grid-cols-3">

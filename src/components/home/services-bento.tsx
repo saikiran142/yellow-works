@@ -23,7 +23,7 @@ export function ServicesBento(): React.JSX.Element {
   const main = SERVICES.filter((s) => s.group !== "on-request");
   const onRequest = SERVICES.filter((s) => s.group === "on-request");
   return (
-    <section aria-labelledby="bento-title" className="py-24">
+    <section aria-labelledby="bento-title" className="py-14 md:py-20">
       <Container>
         <SectionHead id="bento-title" eyebrow="Services" title="Everything you need," em="nothing you don't." lead="Grouped by what you want to happen. Start with one, add more when you are ready." />
         <Bento>

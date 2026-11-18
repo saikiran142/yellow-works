@@ -55,24 +55,24 @@ export function Hero({ whatsappHref }: { whatsappHref: string }): React.JSX.Elem
   );
 
   return (
-    <section className="mx-auto grid max-w-[var(--max-w)] gap-12 px-[var(--gutter)] pb-24 pt-16 lg:grid-cols-12 lg:items-center lg:pt-24">
-      <div className="flex flex-col gap-8 lg:col-span-7">
+    <section className="mx-auto grid max-w-[var(--max-w)] gap-8 px-[var(--gutter)] pb-8 pt-3 lg:min-h-[calc(100svh-5rem)] lg:grid-cols-12 lg:items-center lg:gap-12 lg:pb-6 lg:pt-4">
+      <div className="flex flex-col gap-4 lg:col-span-7">
         <Badge tone="signal" className="self-start">
-          AI automation and digital growth studio · Hyderabad
+          AI automation and digital growth studio
         </Badge>
-        <h1 className="text-[length:var(--fs-hero)] leading-[0.95]" aria-label="More customers. Less manual work.">
+        <h1 className="text-[length:clamp(2.5rem,min(1.2rem+5vw,10svh),4.5rem)] leading-[0.95]" aria-label="More customers. Less manual work.">
           <span aria-hidden="true">
             {HEADLINE.map((w) => reveal(w))}
             <br />
             {HEADLINE_EM.map((w) => reveal(w, true))}
           </span>
         </h1>
-        <p className="max-w-xl text-muted">
+        <p className="max-w-2xl text-base text-muted sm:text-lg">
           We build the websites, marketing and AI systems that bring enquiries in, answer them in under a minute and follow up automatically.
         </p>
 
-        <form onSubmit={onSubmit} className="flex max-w-xl flex-col gap-3" aria-describedby="persona-help">
-          <label htmlFor="persona-input" className="font-display text-lg font-semibold">
+        <form onSubmit={onSubmit} className="flex max-w-xl flex-col gap-2" aria-describedby="persona-help">
+          <label htmlFor="persona-input" className="font-display text-base font-semibold">
             Type your business name and what you do.
           </label>
           <div className="flex flex-col gap-2 rounded-card border border-border bg-surface p-2 sm:flex-row">
@@ -91,13 +91,13 @@ export function Hero({ whatsappHref }: { whatsappHref: string }): React.JSX.Elem
               {status === "loading" ? "Personalising" : "Show me"}
             </Button>
           </div>
-          <p id="persona-help" className="text-sm text-muted">
+          <p id="persona-help" className="text-xs text-muted">
             We use this only to personalise the demo. Nothing is stored.
           </p>
           {status === "error" && <ErrorState title="Could not personalise" body={message} />}
         </form>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <ButtonLink href="/book-a-demo" variant="secondary">
             Book a personalised demo
           </ButtonLink>

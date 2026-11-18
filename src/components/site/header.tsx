@@ -29,7 +29,7 @@ export function Header(): React.JSX.Element {
   }, []);
 
   return (
-    <header className="sticky top-3 z-40 px-4">
+    <header className="sticky top-0 z-40 bg-[var(--c-bg)] px-4 py-3">
       <div
         className={clsx(
           "glass mx-auto flex items-center justify-between gap-4 rounded-full shadow-float transition-[max-width,padding] duration-300 ease-out",

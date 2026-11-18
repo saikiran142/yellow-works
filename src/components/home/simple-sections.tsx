@@ -29,7 +29,7 @@ export function ScanEntry(): React.JSX.Element {
 
 export function HowWeWork(): React.JSX.Element {
   return (
-    <section aria-labelledby="how-title" className="py-24">
+    <section aria-labelledby="how-title" className="py-14 md:py-20">
       <Container>
         <SectionHead id="how-title" eyebrow="How we work" title="A clear process," em="no surprises." />
         <ol className="grid gap-4 md:grid-cols-5">
@@ -48,7 +48,7 @@ export function HowWeWork(): React.JSX.Element {
 
 export function PricingPreview(): React.JSX.Element {
   return (
-    <section aria-labelledby="pricing-title" className="py-24">
+    <section aria-labelledby="pricing-title" className="py-14 md:py-20">
       <Container>
         <SectionHead id="pricing-title" eyebrow="Pricing" title="Simple packages." em="Honest terms." lead={PRICING_NOTE} />
         <div className="grid gap-4 lg:grid-cols-3">
@@ -62,7 +62,7 @@ export function PricingPreview(): React.JSX.Element {
 
 export function Trust(): React.JSX.Element {
   return (
-    <section aria-labelledby="trust-title" className="py-24">
+    <section aria-labelledby="trust-title" className="py-14 md:py-20">
       <Container>
         <SectionHead id="trust-title" eyebrow="Why trust us" title="Built to be" em="easy to trust." lead="We are new, so we would rather show you how we work than ask you to take our word." />
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -80,7 +80,7 @@ export function Trust(): React.JSX.Element {
 
 export function Faq({ items = FAQS }: { items?: { q: string; a: string }[] }): React.JSX.Element {
   return (
-    <section aria-labelledby="faq-title" className="py-24">
+    <section aria-labelledby="faq-title" className="py-14 md:py-20">
       <JsonLd data={faqLd(items)} />
       <Container>
         <SectionHead id="faq-title" eyebrow="FAQ" title="Questions" em="owners ask." />

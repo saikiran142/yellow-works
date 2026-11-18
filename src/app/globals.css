@@ -46,6 +46,8 @@
 
 html {
   background: var(--c-bg);
+  /* Sticky floating header: keep anchored sections and focused fields clear of it. */
+  scroll-padding-top: 6.5rem;
 }
 body {
   background: var(--c-bg);

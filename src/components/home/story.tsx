@@ -28,7 +28,7 @@ const panels: Record<(typeof steps)[number]["id"], React.JSX.Element> = {
  */
 export function Story(): React.JSX.Element {
   return (
-    <section aria-labelledby="story-title" className="story py-24">
+    <section aria-labelledby="story-title" className="story py-14 md:py-20">
       <Container>
         <SectionHead id="story-title" eyebrow="One enquiry's journey" title="From first message to" em="five-star review." lead="Scroll to follow a single enquiry. This is an illustration on a fictional business." />
       </Container>

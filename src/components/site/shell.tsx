@@ -29,7 +29,7 @@ export function Container({ children, className = "" }: { children: ReactNode; c
 
 export function SectionHead({ eyebrow, title, em, lead, id }: { eyebrow?: string; title: string; em?: string; lead?: string; id?: string }): React.JSX.Element {
   return (
-    <div className="mb-10 max-w-3xl">
+    <div className="mb-8 max-w-3xl">
       {eyebrow && <p className="mono mb-3 text-muted">{eyebrow}</p>}
       <h2 id={id} className="text-[length:var(--fs-h2)]">
         {title} {em && <span className="em-serif">{em}</span>}

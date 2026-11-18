@@ -14,14 +14,14 @@ export default function Home(): React.JSX.Element {
       <Hero whatsappHref={whatsappHref()} />
       <Marquee />
       <Outcomes />
-      <section id="front-desk" aria-labelledby="fd-title" className="py-24">
+      <section id="front-desk" aria-labelledby="fd-title" className="py-14 md:py-20">
         <Container>
           <SectionHead id="fd-title" eyebrow="Demo 1 · AI Front Desk" title="Message it like a customer." em="Watch the owner's side." lead="Ask about prices, timings or book a slot. The assistant answers from the business's own details, hands over to staff when it should, and the dashboard updates live." />
           <LazyFrontDesk />
         </Container>
       </section>
       <Story />
-      <section id="autopilot" aria-labelledby="ap-title" className="py-24">
+      <section id="autopilot" aria-labelledby="ap-title" className="py-14 md:py-20">
         <Container>
           <SectionHead id="ap-title" eyebrow="Demo 2 · Lead Autopilot" title="One enquiry in." em="Everything else on its own." lead="Send a sample enquiry and watch it get scored, logged, answered and followed up. Then flip to see the same lead handled by hand." />
           <LazyAutopilot />
